@@ -1,0 +1,71 @@
+.pet-tile {
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nome {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.tutor {
+  font-size: 1.2rem;
+  color: #bbb;
+}
+
+mat-card-content p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+mat-card-actions button[color="primary"] mat-icon {
+  color: #4fc3f7;
+  transition: color 0.3s ease;
+}
+
+mat-card-actions button[color="warn"] mat-icon {
+  color: #ef5350;
+  transition: color 0.3s ease;
+}
+
+mat-card-actions button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+mat-card-actions button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}

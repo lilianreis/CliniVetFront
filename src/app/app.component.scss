@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-toolbar {
+  position: relative;
+  z-index: 2;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  margin-right: 8px;
+}
+
+.titulo {
+  font-size: 1.5em;
+  font-family: "Segoe UI Black";
+}
+
+.content {
+  flex: 1 1 auto;
+  padding: 16px;
+  overflow: auto;
+}
+
+.footer {
+  justify-content: center;
+  font-size: small;
+  height: 3em;
+}

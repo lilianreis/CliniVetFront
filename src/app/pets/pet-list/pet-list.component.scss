@@ -1,0 +1,27 @@
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.title {
+  color: black; // ✔️ visível no tema escuro
+  margin-bottom: 16px;
+}
+
+.header-row button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-row button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(79, 195, 247, 0.4); // azul leve
+}

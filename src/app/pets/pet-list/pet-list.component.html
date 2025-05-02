@@ -1,0 +1,13 @@
+<div class="header-row">
+  <h2 class="title">🐾 Pets Cadastrados</h2>
+  <button mat-raised-button color="primary" (click)="novoPet()">Novo Pet</button>
+</div>
+
+<div class="card-grid">
+  <app-pet-list-item
+    *ngFor="let pet of pets"
+    [pet]="pet"
+    (onDelete)="handleDelete($event)"
+    (onUpdate)="handleUpdate($event)">
+  </app-pet-list-item>
+</div>

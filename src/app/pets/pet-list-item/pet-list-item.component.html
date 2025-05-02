@@ -1,0 +1,26 @@
+<mat-card class="pet-tile">
+  <div class="header">
+    <img [src]="getEspecieImage(pet.especie)" alt="Espécie" class="avatar" />
+    <div class="header-info">
+      <h3 class="nome">{{ pet.nome }}</h3>
+      <span class="tutor">{{ pet.tutor }}</span>
+    </div>
+  </div>
+
+  <mat-card-content>
+    <p><strong>Espécie:</strong> {{ pet.especie }}</p>
+    <p><strong>Raça:</strong> {{ pet.raca || 'RND' }}</p>
+    <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
+    <p><strong>Castrado:</strong> {{ pet.castrado ? 'Sim' : 'Não' }}</p>
+    <p><strong>Nascimento:</strong> {{ pet.dataNascimento | date:'dd/MM/yyyy' }}</p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-icon-button color="primary" (click)="updatePet()" aria-label="Editar" matRipple>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="deletePet()" aria-label="Excluir" matRipple>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

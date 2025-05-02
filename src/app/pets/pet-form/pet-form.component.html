@@ -1,0 +1,59 @@
+<form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title class="mat-title text-light">Cadastro de Pet</mat-card-title>
+    <mat-card-content>
+
+      <!-- Linha 1: Nome | Tutor -->
+      <div class="row">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Tutor</mat-label>
+          <input matInput formControlName="tutor" required />
+        </mat-form-field>
+      </div>
+
+      <!-- Linha 2: Data de Nascimento | Raça | Espécie -->
+      <div class="row">
+        <mat-form-field appearance="fill" class="third-width">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dataNascimento" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="third-width">
+          <mat-label>Raça</mat-label>
+          <input matInput formControlName="raca" placeholder="Raça (RND se não informado)" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="third-width">
+          <mat-label>Espécie</mat-label>
+          <mat-select formControlName="especie" required>
+            <mat-option *ngFor="let esp of especies" [value]="esp">{{ esp }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Linha 3: Castrado | Sexo -->
+      <div class="row">
+        <mat-checkbox formControlName="castrado" class="checkbox-align">Castrado</mat-checkbox>
+
+        <div class="half-width radio-group-wrap">
+          <div class="radio-label">Sexo</div>
+          <mat-radio-group formControlName="sexo" class="radio-group">
+            <mat-radio-button *ngFor="let sexo of sexos" [value]="sexo">{{ sexo }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions class="form-actions">
+      <button mat-raised-button color="primary" type="submit">Salvar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
