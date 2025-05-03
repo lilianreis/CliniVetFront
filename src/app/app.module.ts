@@ -13,13 +13,16 @@ import {PetFormComponent} from './pets/pet-form/pet-form.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MatRipple} from '@angular/material/core';
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {ConfirmDialogComponent} from './shared/confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     PetListComponent,
     PetListItemComponent,
-    PetFormComponent
+    PetFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
     ReactiveFormsModule,
     MaterialModule,
     MatRipple,
+    MatDialogModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

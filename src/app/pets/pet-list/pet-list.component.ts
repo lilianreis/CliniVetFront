@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { Pet } from '../shared/pet';
+import {Pet} from '../shared/pet';
 import {PetService} from '../shared/pet.service';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmDialogComponent, ConfirmDialogData} from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-pet-list',
@@ -12,15 +14,34 @@ import {Router} from '@angular/router';
 export class PetListComponent implements OnInit {
   pets: Pet[] = [];
 
-  constructor(private petService: PetService, private router: Router) {}
+  constructor(
+    private petService: PetService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.petService.getAll().subscribe((pets: Pet[]) => this.pets = pets);
   }
 
-  handleDelete(id: number): void {
-    this.petService.delete(id);
-    this.pets = this.pets.filter(p => p.id !== id);
+  handleDelete(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: <ConfirmDialogData>{
+        title: 'Confirmar Ação',
+        message: 'Deseja realmente excluir este pet? Esta ação não pode ser desfeita.',
+        confirmText: 'Excluir',
+        cancelText: 'Cancelar'
+      },
+      panelClass: 'custom-dialog-panel'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.petService.delete(id).subscribe(() => {
+          this.petService.getAll().subscribe((pets: Pet[]) => this.pets = pets);
+        });
+      }
+    });
   }
 
   async handleUpdate(id: number): Promise<void> {
