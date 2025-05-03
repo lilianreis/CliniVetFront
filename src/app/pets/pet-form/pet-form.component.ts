@@ -62,4 +62,8 @@ export class PetFormComponent implements OnInit {
       });
     }
   }
+
+  async cancel(): Promise<void> {
+    await this.router.navigate(['/pets']);
+  }
 }

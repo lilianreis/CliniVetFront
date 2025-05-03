@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px;
+  padding: 16px;
 }
 
 .header {
@@ -16,8 +16,8 @@
 }
 
 .avatar {
-  width: 78px;
-  height: 78px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid #ccc;
@@ -30,13 +30,13 @@
 
 .nome {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
 }
 
 .tutor {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #bbb;
 }
 

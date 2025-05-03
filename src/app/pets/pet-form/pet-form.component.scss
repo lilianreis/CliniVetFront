@@ -49,6 +49,12 @@
   color: white;
 }
 
+.form-actions {
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+}
+
 @media (max-width: 600px) {
   .half-width,
   .third-width {
