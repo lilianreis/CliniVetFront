@@ -1,37 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Pet } from './pet';
+import {inject, Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Pet} from './pet';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class PetService {
-  private pets: Pet[] = [
-    {
-      id: 1,
-      nome: 'Rex',
-      tutor: 'João',
-      dataNascimento: new Date('2020-01-10'),
-      castrado: true,
-      raca: 'Labrador',
-      especie: 'Canina',
-      sexo: 'Macho',
-    },
-    {
-      id: 2,
-      nome: 'Mimi',
-      tutor: 'Ana',
-      dataNascimento: new Date('2018-05-22'),
-      castrado: false,
-      raca: 'Persa',
-      especie: 'Felina',
-      sexo: 'Fêmea',
-    }
-  ];
+  private http = inject(HttpClient);
 
-  getPets(): Observable<Pet[]> {
-    return of(this.pets);
+  private readonly API_URL = 'http://localhost:8080/pet';
+
+  getAll(): Observable<Pet[]> {
+    return this.http.get<Pet[]>(this.API_URL);
   }
 
-  deletePet(id: number): void {
-    this.pets = this.pets.filter(p => p.id !== id);
+  getById(id: number): Observable<Pet> {
+    return this.http.get<Pet>(`${this.API_URL}/${id}`);
+  }
+
+  create(pet: Pet): Observable<Pet> {
+    return this.http.post<Pet>(this.API_URL, pet);
+  }
+
+  update(pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${this.API_URL}/${pet.id}`, pet);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 }

@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
-import { MaterialModule } from './material.module';
+import {MaterialModule} from './material.module';
 
-import { PetListComponent } from './pets/pet-list/pet-list.component';
-import { PetListItemComponent } from './pets/pet-list-item/pet-list-item.component';
-import { PetFormComponent } from './pets/pet-form/pet-form.component';
+import {PetListComponent} from './pets/pet-list/pet-list.component';
+import {PetListItemComponent} from './pets/pet-list-item/pet-list-item.component';
+import {PetFormComponent} from './pets/pet-form/pet-form.component';
 
-import { MomentDateAdapter, MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MatRipple} from '@angular/material/core';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import {DateAdapter, MAT_DATE_FORMATS, MatRipple} from '@angular/material/core';
     AppRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatRipple
+    MatRipple,
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
     { provide: DateAdapter, useClass: MomentDateAdapter },
     {
       provide: MAT_DATE_FORMATS,

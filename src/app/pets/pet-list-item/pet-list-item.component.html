@@ -1,18 +1,18 @@
 <mat-card class="pet-tile">
   <div class="header">
-    <img [src]="getEspecieImage(pet.especie)" alt="Espécie" class="avatar" />
+    <img [src]="getEspecieImage(pet.species)" alt="Espécie" class="avatar" />
     <div class="header-info">
-      <h3 class="nome">{{ pet.nome }}</h3>
+      <h3 class="nome">{{ pet.name }}</h3>
       <span class="tutor">{{ pet.tutor }}</span>
     </div>
   </div>
 
   <mat-card-content>
-    <p><strong>Espécie:</strong> {{ pet.especie }}</p>
-    <p><strong>Raça:</strong> {{ pet.raca || 'RND' }}</p>
-    <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
-    <p><strong>Castrado:</strong> {{ pet.castrado ? 'Sim' : 'Não' }}</p>
-    <p><strong>Nascimento:</strong> {{ pet.dataNascimento | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Espécie:</strong> {{ pet.species }}</p>
+    <p><strong>Raça:</strong> {{ pet.breed || 'RND' }}</p>
+    <p><strong>Sexo:</strong> {{ pet.gender }}</p>
+    <p><strong>Castrado:</strong> {{ pet.isNeutered ? 'Sim' : 'Não' }}</p>
+    <p><strong>Nascimento:</strong> {{ pet.birthDate | date:'dd/MM/yyyy' }}</p>
   </mat-card-content>
 
   <mat-card-actions align="end">
