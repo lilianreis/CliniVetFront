@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Pet } from '../shared/pet';
 import {PetService} from '../shared/pet.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pet-list',
@@ -11,7 +12,7 @@ import {PetService} from '../shared/pet.service';
 export class PetListComponent implements OnInit {
   pets: Pet[] = [];
 
-  constructor(private petService: PetService) {}
+  constructor(private petService: PetService, private router: Router) {}
 
   ngOnInit(): void {
     this.petService.getAll().subscribe((pets: Pet[]) => this.pets = pets);
@@ -27,8 +28,11 @@ export class PetListComponent implements OnInit {
     console.log('Atualizar pet:', id);
   }
 
-  novoPet() {
-    // Exemplo de navegação para cadastro
-    console.log('Criar novo pet');
+  async novoPet() {
+    try{
+      await this.router.navigate(['/pets/new']);
+    } catch (error) {
+      console.log("Erro ao navegar para novo pet: ", error);
+    }
   }
 }

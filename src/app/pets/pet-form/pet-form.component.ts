@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PetService} from '../shared/pet.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Pet} from '../shared/pet';
 
 @Component({
   selector: 'app-pet-form',
@@ -7,31 +10,56 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './pet-form.component.html',
   styleUrl: './pet-form.component.scss'
 })
-export class PetFormComponent {
-  petForm: FormGroup;
-  especies = ['Canina', 'Felina', 'Ave', 'Outra'];
-  sexos = ['Macho', 'Fêmea'];
+export class PetFormComponent implements OnInit {
+  petForm!: FormGroup;
+  petId?: number;
 
-  constructor(private fb: FormBuilder) {
+  species: String[] = ['Canina', 'Felina', 'Ave', 'Outra'];
+  genders: String[] = ['Macho', 'Fêmea'];
+
+  constructor(
+    private fb: FormBuilder,
+    private petService: PetService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
     this.petForm = this.fb.group({
-      nome: ['', Validators.required],
+      id: [null],
+      name: ['', Validators.required],
       tutor: ['', Validators.required],
-      dataNascimento: [null, Validators.required],
-      castrado: [false],
-      raca: [''],
-      especie: ['', Validators.required],
-      sexo: ['', Validators.required]
+      birthDate: [null, Validators.required],
+      isNeutered: [false],
+      breed: [''],
+      species: ['', Validators.required],
+      gender: ['', Validators.required]
     });
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.petId = +id;
+        this.petService.getById(this.petId).subscribe(pet => {
+          this.petForm.patchValue(pet);
+        });
+      }
+    })
   }
 
-  onSubmit() {
-    if (!this.petForm.value.raca) {
-      this.petForm.patchValue({ raca: 'RND' });
-    }
+  savePet(): void {
+    const pet: Pet = this.petForm.value;
 
-    if (this.petForm.valid) {
-      console.log('Dados do pet:', this.petForm.value);
-      // Aqui você pode enviar para um backend ou serviço
+    if (pet.id) {
+      this.petService.update(pet).subscribe({
+        next: () => this.router.navigate(['/pets']),
+        error: err => console.error('Erro ao atualizar pet: ', err)
+      });
+    } else {
+      this.petService.create(pet).subscribe({
+        next: () => this.router.navigate(['/pets']),
+        error: err => console.error('Erro ao criar pet: ', err)
+      });
     }
   }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="petForm" (ngSubmit)="savePet()">
   <mat-card>
     <mat-card-title class="mat-title text-light">Cadastro de Pet</mat-card-title>
     <mat-card-content>
@@ -7,7 +7,7 @@
       <div class="row">
         <mat-form-field appearance="fill" class="half-width">
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome" required />
+          <input matInput formControlName="name" required />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="half-width">
@@ -20,32 +20,32 @@
       <div class="row">
         <mat-form-field appearance="fill" class="third-width">
           <mat-label>Data de Nascimento</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="dataNascimento" required />
+          <input matInput [matDatepicker]="picker" formControlName="birthDate" required />
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="third-width">
           <mat-label>Raça</mat-label>
-          <input matInput formControlName="raca" placeholder="Raça (RND se não informado)" />
+          <input matInput formControlName="breed" placeholder="Raça (RND se não informado)" />
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="third-width">
           <mat-label>Espécie</mat-label>
-          <mat-select formControlName="especie" required>
-            <mat-option *ngFor="let esp of especies" [value]="esp">{{ esp }}</mat-option>
+          <mat-select formControlName="species" required>
+            <mat-option *ngFor="let esp of species" [value]="esp">{{ esp }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
       <!-- Linha 3: Castrado | Sexo -->
       <div class="row">
-        <mat-checkbox formControlName="castrado" class="checkbox-align">Castrado</mat-checkbox>
+        <mat-checkbox formControlName="isNeutered" class="checkbox-align">Castrado</mat-checkbox>
 
         <div class="half-width radio-group-wrap">
           <div class="radio-label">Sexo</div>
-          <mat-radio-group formControlName="sexo" class="radio-group">
-            <mat-radio-button *ngFor="let sexo of sexos" [value]="sexo">{{ sexo }}</mat-radio-button>
+          <mat-radio-group formControlName="gender" class="radio-group">
+            <mat-radio-button *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
