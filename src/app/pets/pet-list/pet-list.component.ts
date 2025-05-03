@@ -45,18 +45,10 @@ export class PetListComponent implements OnInit {
   }
 
   async handleUpdate(id: number): Promise<void> {
-    try {
-      await this.router.navigate([`/pets/update/${id}`]);
-    } catch (error) {
-      console.log("Erro ao navegar para update pet: ", error);
-    }
+    await this.router.navigate([`/pets/update/${id}`]);
   }
 
   async novoPet(): Promise<void> {
-    try {
-      await this.router.navigate(['/pets/new']);
-    } catch (error) {
-      console.log("Erro ao navegar para novo pet: ", error);
-    }
+    await this.router.navigate(['/pets/new']);
   }
 }

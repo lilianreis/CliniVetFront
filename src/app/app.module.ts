@@ -15,6 +15,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MatRipple} from '@angular/material/core';
 import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {ConfirmDialogComponent} from './shared/confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     PetListComponent,
     PetListItemComponent,
     PetFormComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
