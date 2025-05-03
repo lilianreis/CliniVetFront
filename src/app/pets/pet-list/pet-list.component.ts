@@ -23,13 +23,16 @@ export class PetListComponent implements OnInit {
     this.pets = this.pets.filter(p => p.id !== id);
   }
 
-  handleUpdate(id: number): void {
-    // Exemplo de navegação para update
-    console.log('Atualizar pet:', id);
+  async handleUpdate(id: number): Promise<void> {
+    try {
+      await this.router.navigate([`/pets/update/${id}`]);
+    } catch (error) {
+      console.log("Erro ao navegar para update pet: ", error);
+    }
   }
 
-  async novoPet() {
-    try{
+  async novoPet(): Promise<void> {
+    try {
       await this.router.navigate(['/pets/new']);
     } catch (error) {
       console.log("Erro ao navegar para novo pet: ", error);

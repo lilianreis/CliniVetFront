@@ -6,7 +6,9 @@ import {PetFormComponent} from './pets/pet-form/pet-form.component';
 const routes: Routes = [
   {path: "", component: PetListComponent},
   {path: "pets", component: PetListComponent},
-  {path: "pets/new", component: PetFormComponent}
+  {path: "pets/new", component: PetFormComponent},
+  {path: "pets/update/:id", component: PetFormComponent},
+  {path: "", redirectTo: "/pets", pathMatch: "full"},
 ];
 
 @NgModule({
