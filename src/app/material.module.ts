@@ -12,22 +12,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   exports: [
-    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatMomentDateModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMomentDateModule,
     MatRadioModule,
     MatSelectModule,
-    MatListModule,
-    MatIconModule,
-    MatDividerModule
+    MatSlideToggleModule,
+    MatToolbarModule,
   ]
 })
 export class MaterialModule {}

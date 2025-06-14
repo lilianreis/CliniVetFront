@@ -40,14 +40,17 @@
 
       <!-- Linha 3: Castrado | Sexo -->
       <div class="row">
-        <mat-checkbox formControlName="isNeutered" class="checkbox-align">Castrado</mat-checkbox>
-
-        <div class="half-width radio-group-wrap">
-          <div class="radio-label">Sexo</div>
-          <mat-radio-group formControlName="gender" class="radio-group">
-            <mat-radio-button *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-radio-button>
+        <div class="radio-group-wrap">
+          <label id="genders-label" class="radio-label">Sexo</label>
+          <mat-radio-group
+            aria-labelledby="genders-label"
+            class="radio-group-gender" formControlName="gender">
+            @for (gender of genders; track gender) {
+              <mat-radio-button [value]="gender">{{gender}}</mat-radio-button>
+            }
           </mat-radio-group>
         </div>
+        <mat-slide-toggle class="half-width" formControlName="isNeutered">Castrado</mat-slide-toggle>
       </div>
 
     </mat-card-content>
